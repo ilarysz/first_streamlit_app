@@ -55,7 +55,7 @@ if streamlit.button('Get fruit load list'):
     my_data_rows = get_fruit_load_list()
     streamlit.dataframe(my_data_rows)
 
+add_my_fruit = streamlit.text_input('What fruit would you like add to the list?')
 if streamlit.button('Add fruit to the list'):
-    add_my_fruit = streamlit.text_input('What fruit would you like add to the list?')
     response = insert_row_snowflake(add_my_fruit)
     streamlit.write(response)
