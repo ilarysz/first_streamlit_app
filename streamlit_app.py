@@ -11,7 +11,6 @@ def get_fruityvice_data(fruit):
     return fruityvice_normalized
 
 def get_fruit_load_list():
-    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     with my_cnx.cursor() as my_cur:
         my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
         return my_cur.fetchall()
@@ -45,6 +44,7 @@ except URLError as e:
 
 
 # Snowflake connector
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 streamlit.text("Fruit load list contains:")
 if streamlit.button('Get fruit load list'):
     my_data_rows = get_fruit_load_list()
